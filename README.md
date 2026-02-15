@@ -34,17 +34,17 @@ Built for the Lefaucheux Museum archive use case at [lefaucheux.com](https://lef
 
 Inline sidebar shows only top-level term plus `View all`:
 
-![Before - inline compact filter](docs/before1.png)
+![Before - inline compact filter](docs/images/before-inline-compact.png)
 
 Modal/tree selection appears in separate panel:
 
-![Before - modal tree](docs/before2.png)
+![Before - modal tree](docs/images/before-modal-view-all.png)
 
 ### After (expanded inline tree)
 
 Full hierarchy appears inline in the sidebar:
 
-![After - expanded inline tree](docs/after.png)
+![After - expanded inline tree](docs/images/after-expanded-inline-tree.png)
 
 ## Development
 
