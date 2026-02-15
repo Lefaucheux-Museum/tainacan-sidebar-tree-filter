@@ -2,7 +2,8 @@
 /**
  * Plugin Name: Tainacan Sidebar Tree Filter
  * Description: Replaces the default Tainacan taxonomy filter with a fully expanded hierarchical tree.
- * Version: 1.1
+ * Version: 1.2
+ * Author: Lefaucheux Museum
  */
 
 if (!defined('ABSPATH')) exit;
