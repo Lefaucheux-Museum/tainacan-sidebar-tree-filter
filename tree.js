@@ -239,14 +239,19 @@
         return true;
         };
 
-        const findMatchingNativeFilterItem = (sidebar, taxonomyConfig) => {
+        const findMatchingNativeFilterItem = (sidebar, taxonomyConfig, template) => {
             const title = normalizeText(taxonomyConfig.title);
+            const rootIds = getTreeRootNodes(template.content).map(getTreeRootValue);
             const items = Array.from(sidebar.querySelectorAll(".filter-item-forms"));
             for (const item of items) {
                 if (item.closest(".tnc-tree-filter")) continue;
-                const label = normalizeText(item.querySelector(".collapse-label") ? item.querySelector(".collapse-label").textContent : "");
-                const hasViewAll = !!item.querySelector(".view-all-button");
-                if (hasViewAll && label === title) return item;
+                const label = item.querySelector(".collapse-label");
+                if (normalizeText(label?.textContent) !== title) continue;
+
+                const allowedRootIds = getNativeTopLevelOptionIds(item);
+                if (rootIds.some((id) => allowedRootIds.has(id))) {
+                    return { item, allowedRootIds };
+                }
             }
             return null;
         };
@@ -255,11 +260,9 @@
             const template = templatesByTaxonomy[taxonomyConfig.taxonomy];
             if (!template) return false;
 
-            const nativeFilterItem = findMatchingNativeFilterItem(sidebar, taxonomyConfig);
-            if (!nativeFilterItem) return false;
-
-            const allowedRootIds = getNativeTopLevelOptionIds(nativeFilterItem);
-            if (allowedRootIds.size === 0) return false;
+            const match = findMatchingNativeFilterItem(sidebar, taxonomyConfig, template);
+            if (!match) return false;
+            const { item: nativeFilterItem, allowedRootIds } = match;
 
             let tree = sidebar.querySelector(`.tnc-tree-filter[data-taxonomy="${taxonomyConfig.taxonomy}"]`);
             if (!tree) {
