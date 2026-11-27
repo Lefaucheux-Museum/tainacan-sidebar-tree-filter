@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Tainacan Sidebar Tree Filter
  * Description: Replaces the default Tainacan taxonomy filter with a fully expanded hierarchical tree.
- * Version: 1.2
+ * Version: 1.2.1
  * Author: Lefaucheux Museum
  */
 
@@ -14,8 +14,8 @@ add_action('wp_enqueue_scripts', function () {
 
     $css_path = plugin_dir_path(__FILE__) . 'tree.css';
     $js_path = plugin_dir_path(__FILE__) . 'tree.js';
-    $css_version = file_exists($css_path) ? (string) filemtime($css_path) : '1.2';
-    $js_version = file_exists($js_path) ? (string) filemtime($js_path) : '1.2';
+    $css_version = file_exists($css_path) ? (string) filemtime($css_path) : '1.2.1';
+    $js_version = file_exists($js_path) ? (string) filemtime($js_path) : '1.2.1';
 
     wp_enqueue_style('tnc-tree-filter', plugin_dir_url(__FILE__) . 'tree.css', [], $css_version);
     wp_enqueue_script('tnc-tree-filter', plugin_dir_url(__FILE__) . 'tree.js', [], $js_version, true);
